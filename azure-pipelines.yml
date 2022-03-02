@@ -10,15 +10,27 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Gradle@2
-  inputs:
-    workingDirectory: ''
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'build'
+# - task: Gradle@2
+#   inputs:
+#     workingDirectory: ''
+#     gradleWrapperFile: 'gradlew'
+#     gradleOptions: '-Xmx3072m'
+#     javaHomeOption: 'JDKVersion'
+#     jdkVersionOption: '1.8'
+#     jdkArchitectureOption: 'x64'
+#     publishJUnitResults: true
+#     testResultsFiles: '**/TEST-*.xml'
+#     tasks: 'build'
 
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      echo 'Hello world'
+      
+# - task: InvokeRESTAPI@1
+#   inputs:
+#     connectionType: 'connectedServiceName'
+#     method: 'POST'
+#     waitForCompletion: 'false'
