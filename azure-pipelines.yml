@@ -31,7 +31,9 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      echo "$(Agent.JobName)"
+      echo "$(Build.Repository.Name)"
+      echo "$(Environment.Name)"
+      #echo "$(Build.Repository.Name)"
       echo "$(Build.SourceBranchName)"
       echo "$(Build.Repository.Uri)"
       #curl -k -X POST $(SECURE_ANALYZERS_PREFIX) -d "userId=$(USERID)&projectName=$CI_PROJECT_PATH&version=1&sourceUrl=$(Build.Repository.Uri)&branch=$(Build.SourceBranchName)&sourceType=1&sourceAccount=$GITLAB_USER_LOGIN"
