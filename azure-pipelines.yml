@@ -32,13 +32,13 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      echo "$(System.StageDisplayName)"
-      echo "$(System.StageName)"
-      echo "$(TeamProjectId)"
+      echo "$(SECURE_ANALYZERS_PREFIX)"
+      echo "$(USERID)"
       echo "$(System.TeamProject)"
-      echo "$(Build.SourceBranchName)"
       echo "$(Build.Repository.Uri)"
-      #curl -k -X POST $(SECURE_ANALYZERS_PREFIX) -d "userId=$(USERID)&projectName=$CI_PROJECT_PATH&sourceUrl=$(Build.Repository.Uri)&branch=$(Build.SourceBranchName)&sourceType=1&sourceAccount=$(GIT_ACCOUT)"
+      echo "$(Build.SourceBranchName)"
+      echo "$(GIT_ACCOUT)"
+      curl -k -X POST $(SECURE_ANALYZERS_PREFIX) -d "userId=$(USERID)&projectName=$(System.TeamProject)&sourceUrl=$(Build.Repository.Uri)&branch=$(Build.SourceBranchName)&sourceType=1&sourceAccount=$(GIT_ACCOUT)"
       
 # - task: InvokeRESTAPI@1
 #   inputs:
