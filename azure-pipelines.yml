@@ -25,7 +25,7 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: echo "${(Pipeline.Workspace)}" #echo ${(Build.Repository.Uri)}
+    script: echo "${}Pipeline.Workspace}}" #echo ${(Build.Repository.Uri)}
       
 # - task: InvokeRESTAPI@1
 #   inputs:
