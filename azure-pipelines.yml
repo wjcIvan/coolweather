@@ -28,8 +28,7 @@ steps:
     script: |
       echo "$(Build.SourceBranchName)"
       echo "$(Build.Repository.Uri)"
-      echo "$(System.PullRequest.SourceRepositoryURI)"
-      echo "$(System.PullRequest.TargetBranch)"
+      echo "$(Build.Repository.Name)"
       
 # - task: InvokeRESTAPI@1
 #   inputs:
