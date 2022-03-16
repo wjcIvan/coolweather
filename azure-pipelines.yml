@@ -32,7 +32,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      echo "$(Build.Repository.Name)"
+      echo "$(System.JobDisplayName)"
       echo "$(SECURE_ANALYZERS_PREFIX)"
       #echo "$(Build.TriggeredBy.ProjectID)"
       echo "$(Build.SourceBranchName)"
