@@ -38,6 +38,7 @@ steps:
       echo "$(Build.Repository.Uri)"
       echo "$(Build.SourceBranchName)"
       echo "$(GIT_ACCOUT)"
+      echo 'curl -k -X POST $(SECURE_ANALYZERS_PREFIX) -d "userId=$(USERID)&projectName=$(System.TeamProject)&sourceUrl=$(Build.Repository.Uri)&branch=$(Build.SourceBranchName)&sourceType=1&sourceAccount=$(GIT_ACCOUT)"'
       curl -k -X POST $(SECURE_ANALYZERS_PREFIX) -d "userId=$(USERID)&projectName=$(System.TeamProject)&sourceUrl=$(Build.Repository.Uri)&branch=$(Build.SourceBranchName)&sourceType=1&sourceAccount=$(GIT_ACCOUT)"
       
 # - task: InvokeRESTAPI@1
