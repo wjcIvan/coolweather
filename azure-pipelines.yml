@@ -1,33 +1,19 @@
-# Gradle
-# Build your Java project and run tests with Gradle using a Gradle wrapper script.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
-
 trigger:
 - master
 
 pool:
   vmImage: ubuntu-latest
-  
+
 variables:
+  # 源代码扫描服务器地址
   SECURE_ANALYZERS_PREFIX: https://hya9.asls.space:46812
+  # 源代码扫描userId
   USERID: bfa4655a5c4849a4a197a116b4643b7a
-  SCAP_API_IMAGE: $(SECURE_ANALYZERS_PREFIX)/secidea/myapis/putGitSvnProject
+  # Git账号 请预先在源代码平台创建该账号
   GIT_ACCOUT: wujiacheng
+  SCAP_API_IMAGE: $(SECURE_ANALYZERS_PREFIX)/secidea/myapis/putGitSvnProject
 
 steps:
-# - task: Gradle@2
-#   inputs:
-#     workingDirectory: ''
-#     gradleWrapperFile: 'gradlew'
-#     gradleOptions: '-Xmx3072m'
-#     javaHomeOption: 'JDKVersion'
-#     jdkVersionOption: '1.8'
-#     jdkArchitectureOption: 'x64'
-#     publishJUnitResults: true
-#     testResultsFiles: '**/TEST-*.xml'
-#     tasks: 'build'
-
 - task: Bash@3
   inputs:
     targetType: 'inline'
@@ -38,11 +24,5 @@ steps:
       echo "$(Build.Repository.Uri)"
       echo "$(Build.SourceBranchName)"
       echo "$(GIT_ACCOUT)"
-      echo 'curl -k -X POST $(SCAP_API_IMAGE) -d "userId=$(USERID)&projectName=$(System.TeamProject)&language=Java/Jsp&sourceUrl=$(Build.Repository.Uri)&branch=$(Build.SourceBranchName)&sourceType=1&sourceAccount=$(GIT_ACCOUT)"'
       curl -k -X POST $(SCAP_API_IMAGE) -d "userId=$(USERID)&projectName=$(System.TeamProject)&language=Java/Jsp&sourceUrl=$(Build.Repository.Uri)&branch=$(Build.SourceBranchName)&sourceType=1&sourceAccount=$(GIT_ACCOUT)"
-      
-# - task: InvokeRESTAPI@1
-#   inputs:
-#     connectionType: 'connectedServiceName'
-#     method: 'POST'
-#     waitForCompletion: 'false'
+
