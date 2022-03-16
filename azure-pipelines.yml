@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
   
 variables:
-  SECURE_ANALYZERS_PREFIX: https://hya9.asls.space:46812/
+  SECURE_ANALYZERS_PREFIX: https://hya9.asls.space:46812
   USERID: bfa4655a5c4849a4a197a116b4643b7a
   SCAP_API_IMAGE: $(SECURE_ANALYZERS_PREFIX)/secidea/myapis/putGitSvnProject
   GIT_ACCOUT: wujiacheng
@@ -32,13 +32,13 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      echo "$(SECURE_ANALYZERS_PREFIX)"
+      echo "$(SCAP_API_IMAGE)"
       echo "$(USERID)"
       echo "$(System.TeamProject)"
       echo "$(Build.Repository.Uri)"
       echo "$(Build.SourceBranchName)"
       echo "$(GIT_ACCOUT)"
-      echo 'curl -k -X POST $(SECURE_ANALYZERS_PREFIX) -d "userId=$(USERID)&projectName=$(System.TeamProject)&sourceUrl=$(Build.Repository.Uri)&branch=$(Build.SourceBranchName)&sourceType=1&sourceAccount=$(GIT_ACCOUT)"'
+      echo 'curl -k -X POST $(SCAP_API_IMAGE) -d "userId=$(USERID)&projectName=$(System.TeamProject)&sourceUrl=$(Build.Repository.Uri)&branch=$(Build.SourceBranchName)&sourceType=1&sourceAccount=$(GIT_ACCOUT)"'
       curl -k -X POST $(SECURE_ANALYZERS_PREFIX) -d "userId=$(USERID)&projectName=$(System.TeamProject)&sourceUrl=$(Build.Repository.Uri)&branch=$(Build.SourceBranchName)&sourceType=1&sourceAccount=$(GIT_ACCOUT)"
       
 # - task: InvokeRESTAPI@1
