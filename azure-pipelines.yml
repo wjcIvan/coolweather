@@ -13,6 +13,7 @@ variables:
   SECURE_ANALYZERS_PREFIX: https://192.168.202.4
   USERID: bfa4655a5c4849a4a197a116b4643b7a
   SCAP_API_IMAGE: $(SECURE_ANALYZERS_PREFIX)/secidea/myapis/putGitSvnProject
+  GIT_ACCOUT: wujiacheng
 
 steps:
 # - task: Gradle@2
@@ -36,7 +37,7 @@ steps:
       #echo "$(Build.Repository.Name)"
       echo "$(Build.SourceBranchName)"
       echo "$(Build.Repository.Uri)"
-      #curl -k -X POST $(SECURE_ANALYZERS_PREFIX) -d "userId=$(USERID)&projectName=$CI_PROJECT_PATH&version=1&sourceUrl=$(Build.Repository.Uri)&branch=$(Build.SourceBranchName)&sourceType=1&sourceAccount=$GITLAB_USER_LOGIN"
+      #curl -k -X POST $(SECURE_ANALYZERS_PREFIX) -d "userId=$(USERID)&projectName=$CI_PROJECT_PATH&sourceUrl=$(Build.Repository.Uri)&branch=$(Build.SourceBranchName)&sourceType=1&sourceAccount=$(GIT_ACCOUT)"
       
 # - task: InvokeRESTAPI@1
 #   inputs:
