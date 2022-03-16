@@ -32,9 +32,10 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      echo "$(System.JobDisplayName)"
-      echo "$(System.JobName)"
-      echo "$(Build.TriggeredBy.ProjectID)"
+      echo "$(System.StageDisplayName)"
+      echo "$(System.StageName)"
+      echo "$(TeamProjectId)"
+      echo "$(System.TeamProject)"
       echo "$(Build.SourceBranchName)"
       echo "$(Build.Repository.Uri)"
       #curl -k -X POST $(SECURE_ANALYZERS_PREFIX) -d "userId=$(USERID)&projectName=$CI_PROJECT_PATH&sourceUrl=$(Build.Repository.Uri)&branch=$(Build.SourceBranchName)&sourceType=1&sourceAccount=$(GIT_ACCOUT)"
