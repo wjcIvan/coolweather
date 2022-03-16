@@ -26,7 +26,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: 
-      echo (${{Build.Repository.Uri}}
+      echo ${{Build.Repository.Uri}}
       
 # - task: InvokeRESTAPI@1
 #   inputs:
