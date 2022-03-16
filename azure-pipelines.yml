@@ -26,8 +26,10 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      echo "$(Pipeline.Workspace)"
+      echo "$(Build.SourceBranchName)"
       echo "$(Build.Repository.Uri)"
+      echo "$(System.PullRequest.SourceRepositoryURI)"
+      echo "$(System.PullRequest.TargetBranch)"
       
 # - task: InvokeRESTAPI@1
 #   inputs:
