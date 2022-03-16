@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
   
 variables:
-  SECURE_ANALYZERS_PREFIX: "https://192.168.202.4"
+  SECURE_ANALYZERS_PREFIX: https://192.168.202.4
   USERID: bfa4655a5c4849a4a197a116b4643b7a
   SCAP_API_IMAGE: $(SECURE_ANALYZERS_PREFIX)/secidea/myapis/putGitSvnProject
 
