@@ -25,4 +25,6 @@ steps:
       echo "$(Build.SourceBranchName)"
       echo "$(GIT_ACCOUT)"
       echo "curl -k -H "Content-Type:application/json" -X POST $(SCAP_API_IMAGE) -d '{"userId":"$(USERID)","projectName":"$(System.TeamProject)","sourceUrl":"$(Build.Repository.Uri)","branch":"$(Build.SourceBranchName)","sourceType":1,"sourceAccount":"$(GIT_ACCOUT)"}'"
-      curl -k -H "Content-Type:application/json" -X POST $(SCAP_API_IMAGE) -d '{"userId":"$(USERID)","projectName":"$(System.TeamProject)","sourceUrl":"$(Build.Repository.Uri)","branch":"$(Build.SourceBranchName)","sourceType":1,"sourceAccount":"$(GIT_ACCOUT)"}' > oscapCurlResult 2>/dev/null && cat oscapCurlResult && rm oscapCurlResult -f
+      curl -k -H "Content-Type:application/json" -X POST $(SCAP_API_IMAGE) -d '{"userId":"$(USERID)","projectName":"$(System.TeamProject)","sourceUrl":"$(Build.Repository.Uri)","branch":"$(Build.SourceBranchName)","sourceType":1,"sourceAccount":"$(GIT_ACCOUT)"}' > oscapCurlResult 2>/dev/null 
+      cat oscapCurlResult
+      rm oscapCurlResult -f
