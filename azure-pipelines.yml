@@ -1,18 +1,18 @@
 trigger:
 - master
-
+ 
 pool:
   vmImage: ubuntu-latest
-
+ 
 variables:
   # 源代码扫描服务器地址
-  SECURE_ANALYZERS_PREFIX: https://hya9.asls.space:46812
+  SECURE_ANALYZERS_PREFIX: http://hya9.asls.space:21222
   # 源代码扫描userId
-  USERID: bfa4655a5c4849a4a197a116b4643b7a
+  USERID: 1499286106686955521
   # Git账号 请预先在源代码平台创建该账号
   GIT_ACCOUT: wujiacheng
-  SCAP_API_IMAGE: $(SECURE_ANALYZERS_PREFIX)/secidea/myapis/putGitSvnProject
-
+  SCAP_API_IMAGE: $(SECURE_ANALYZERS_PREFIX)/oscap/sca-api/osca/oscaScanProject/myapis/putGitSvnProject
+ 
 steps:
 - task: Bash@3
   inputs:
@@ -24,5 +24,4 @@ steps:
       echo "$(Build.Repository.Uri)"
       echo "$(Build.SourceBranchName)"
       echo "$(GIT_ACCOUT)"
-      curl -k -X POST $(SCAP_API_IMAGE) -d "userId=$(USERID)&projectName=$(System.TeamProject)&language=Java/Jsp&sourceUrl=$(Build.Repository.Uri)&branch=$(Build.SourceBranchName)&sourceType=1&sourceAccount=$(GIT_ACCOUT)"
-
+      curl -k -H "Content-Type:application/json" -X POST $(SCAP_API_IMAGE) -d '{"userId":$(USERID),"projectName":$(System.TeamProject),"sourceUrl":$(Build.Repository.Uri),"branch":$(Build.SourceBranchName),"sourceType":1,"sourceAccount":$(GIT_ACCOUT)}'
