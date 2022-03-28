@@ -8,7 +8,7 @@ variables:
   # 源代码扫描服务器地址
   SECURE_ANALYZERS_PREFIX: http://hya9.asls.space:21222
   # 源代码扫描userId
-  USERID: 1499286106686955521
+  USERID: 1446806297948192770
   # Git账号 请预先在源代码平台创建该账号
   GIT_ACCOUT: wujiacheng
   SCAP_API_IMAGE: $(SECURE_ANALYZERS_PREFIX)/oscap/sca-api/osca/oscaScanProject/myapis/putGitSvnProject
