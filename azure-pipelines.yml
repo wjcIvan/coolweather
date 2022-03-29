@@ -25,6 +25,5 @@ steps:
       echo "$(Build.SourceBranchName)"
       echo "$(GIT_ACCOUT)"
       echo "curl -k -f -sS -H "Content-Type:application/json" -X POST $(SCAP_API_IMAGE) -d '{"userId":"$(USERID)","projectName":"$(System.TeamProject)","sourceUrl":"$(Build.Repository.Uri)","branch":"$(Build.SourceBranchName)","sourceType":1,"sourceAccount":"$(GIT_ACCOUT)"}'"
-      temp=$(curl -k -H "Content-Type:application/json" -X POST $(SCAP_API_IMAGE) -d '{"userId":"$(USERID)","projectName":"$(System.TeamProject)","sourceUrl":"$(Build.Repository.Uri)","branch":"$(Build.SourceBranchName)","sourceType":1,"sourceAccount":"$(GIT_ACCOUT)"}')
-      echo "$temp"
+      temp=$(curl -k -sS -H "Content-Type:application/json" -X POST $(SCAP_API_IMAGE) -d '{"userId":"$(USERID)","projectName":"$(System.TeamProject)","sourceUrl":"$(Build.Repository.Uri)","branch":"$(Build.SourceBranchName)","sourceType":1,"sourceAccount":"$(GIT_ACCOUT)"}')
       echo $temp
